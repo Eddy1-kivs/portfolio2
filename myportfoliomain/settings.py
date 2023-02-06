@@ -29,12 +29,11 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kivuvaedwin@gmail.com'
 EMAIL_HOST_PASSWORD = 'zvezlqtvlgsrmxoy'
-ALLOWED_HOST = []
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
