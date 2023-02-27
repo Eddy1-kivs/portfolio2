@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Edwin | Kivuva</title>
+    <link rel="stylesheet" href="/static/assets/vendors/themify-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="/static/assets/css/style.css">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+<header class="navbar  sticky-top  flex-md-nowrap p-0 shadow" style="background: #17263C">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}" style="color: white;">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page" style="color: red; cursor: pointer">{{ website.name_of_site }}</li>
+    </ol>
+    <div class="navbar-nav px-3" style="display:flex; flex-direction: row; align-items:center;">
+        <div class="nav-item text-wrap">
+        </div>
+        <div class="nav-item text-nowrap mt-3 ml-2" >
+        </div>
+    </div>
+</header>
+
+<section style="background-color: white; padding-bottom: 30px">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-9 padding-right">
+					<div class="card-img">
+						<div class="col-sm-5">
+							<div class="view-item" style="margin-top: 20px;">
+								<img src="/{{ website.image }}" class="img" width="1000" alt="" />
+							</div>
+                            <br>
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+                                <span style="color: black; padding-bottom: 20px">click any image to display at the top</span>
+                                <br>
+                                <!-- Wrapper for slides -->
+{#                                <div class="card" id="card" style="">#}
+                                <div class="carousel-inner-l" style="padding: 5px;">
+                                    <span style="color: black; font-style: italic; font-size: 10px;">{{ website.name_of_site }} gallery</span>
+                                    <div class="item active" style="">
+                                        <a href=""><img src="/{{ website.image }}" class="titan"  alt=""></a>
+                                        <a href=""><img src="/{{ website.image_1 }}" class="titan" alt=""></a>
+                                        <a href=""><img src="/{{ website.image_2 }}" class="titan" alt=""></a>
+                                        <a href=""><img src="/{{ website.image_3 }}" class="titan" alt=""></a>
+                                        <a href=""><img src="/{{ website.image_4 }}" class="titan" alt=""></a>
+                                        <a href=""><img src="/{{ website.image_5 }}" class="titan" alt=""></a>
+                                        <a href=""><img src="/{{ website.image_6 }}" class="titan" alt=""></a>
+                                        <a href=""><img src="/{{ website.image_7 }}" class="titan" alt=""></a>
+                                        <a href=""><img src="/{{ website.image_8 }}" class="titan" alt=""></a>
+                                    </div>
+                                </div>
+                                </div>
+                                <!-- Controls -->
+                                <a class="left item-control" href="#similar-product" data-slide="prev">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                                <a class="right item-control" href="#similar-product" data-slide="next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+						<div class="col-sm-7">
+							<div class="item-information">
+								<h2 style="color: black; font-weight: bold">{{ website.name_of_site }}</h2>
+                                <p style="color: #1b1b1b;">{{ website.description }}</p>
+                                {% if website.link %}
+                                    <a href="{{ website.link }}" target="_blank">{{ website.link }}</a>
+                                {% else %}
+                                    <span style="color: red; font-weight: bold; cursor: pointer">{{ website.miss_link }}</span>
+                                {% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+{#		</div>#}
+	</section>
+    <footer class="footer py-3" style="">
+        <div class="container">
+            <p class="small mb-0 text-light">
+                &copy; <script>document.write(new Date().getFullYear())</script> Created With <i class="ti-heart text-danger"></i> By <a href="" target="_blank"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">EdwinKivuva</span></a>
+            </p>
+        </div>
+        <div id="scroll-Top">
+            <div class="return-to-top">
+                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="/static/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="/static/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+    <script src="/static/assets/vendors/isotope/isotope.pkgd.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+{#    <script src="/static/assets/js/main.js"></script>#}
+<script>
+// Get the main image element
+const mainImage = document.querySelector('.view-item img');
+
+// Get all the images in the carousel
+const carouselImages = document.querySelectorAll('#similar-product .carousel-inner-l img');
+
+// Add a click event listener to each carousel image
+carouselImages.forEach(image => {
+  image.addEventListener('click', event => {
+    // Prevent the default behavior of following the link
+    event.preventDefault();
+
+    // Update the main image source with the clicked image source
+    mainImage.src = event.target.src;
+  });
+});
+</script>
+</body>
+<style>
+    .img {
+        border: none;
+        box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+    }
+    .card {
+        background-color: #17263C;
+        border-radius: 1px;
+        width: 1000px;
+        height: 130px;
+    }
+    .item {
+        padding: 5px;
+        display: flex;
+    }
+    .titan{
+        width: 110px;
+        object-fit: fill;
+        padding: 5px;
+        box-shadow: 5px 5px 5px rgba(5, 5, 5, 0.20);
+    }
+    .titan:hover{
+        transition: 2s;
+        transform: scale(250%);
+    }
+    @media (max-width: 768px) {
+        .img{
+            width: 450px;
+            object-fit: cover;
+        }
+        div.card{
+            width: 450px;
+            height: 250px;
+        }
+        .item {
+            display: block;
+        }
+        .titan {
+            width: 100px;
+        }
+    }
+</style>
+</html>

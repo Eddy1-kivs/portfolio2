@@ -8,30 +8,55 @@
     <meta name="description" content="Start your development with JohnDoe landing page.">
     <meta name="author" content="Devcrud">
     <title>Edwin | Kivuva</title>
-    <!-- font icons -->
     <link rel="stylesheet" href="/static/assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + JohnDoe main styles -->
 	<link rel="stylesheet" href="/static/assets/css/style.css">
 </head>
 
-
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-<!--    <a href="components.html" class="btn btn-primary btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a>-->
     <header class="header">
         <div class="container">
             <ul class="social-icons pt-3">
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="https://github.com/Eddy1-kivs?"><i class="ti-github" aria-hidden="true"></i></a></li>
-            </ul>  
+                {% for fb in facebook %}
+                    {% if fb.link %}
+                        <li class="social-item"><a class="social-link text-light" href="{{ fb.link }}" target="_blank"><i class="ti-{{ fb.icon }}" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
+                    {% endif %}
+                {% endfor %}
+                {% for tw in twitter %}
+                    {% if tw.link %}
+                        <li class="social-item"><a class="social-link text-light" href="{{ tw.link }}" target="_blank"><i class="ti-{{ tw.icon }}" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
+                    {% endif %}
+                {% endfor %}
+                {% for li in linkedin %}
+                    {% if li.link %}
+                        <li class="social-item"><a class="social-link text-light" href="{{ li.link }}" target="_blank"><i class="ti-{{ li.icon }}" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-linkedin" aria-hidden="true"></i></a></li>
+                    {% endif %}
+                {% endfor %}
+                {% for ig in instagram %}
+                    {% if ig.link %}
+                        <li class="social-item"><a class="social-link text-light" href="{{ ig.link }}" target="_blank"><i class="ti-{{ ig.icon }}" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
+                    {% endif %}
+                {% endfor %}
+                {% for git in github %}
+                    {% if git.link %}
+                        <li class="social-item"><a class="social-link text-light" href="{{ git.link }}" target="_blank"><i class="ti-{{ git.icon }}" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
             <div class="header-content">
                 {% for item in welcome %}
-                <h4 class="header-subtitle" >Hello, I am</h4>
-                <h1 class="header-title">{{item.name}}</h1>
-                <h6 class="header-mono" >{{item.specialisation}}</h6>
-<!--                <button class="btn btn-primary btn-rounded"><i class="ti-printer pr-2"></i>Print Resume</button>-->
+                    <h4 class="header-subtitle" >Hello, I'm</h4>
+                    <h1 class="header-title">{{item.name}}</h1>
+                    <h6 class="header-mono" >{{item.specialisation}}</h6>
                 {% endfor %}
             </div>
         </div>
@@ -55,20 +80,17 @@
                 </ul>
                 <ul class="navbar-nav brand">
                     {% for image in welcome%}
-                    <img src="/static/assets/imgs/profile.jpeg" alt="" class="brand-img">
-                    <li class="brand-txt">
-                        <h5 class="brand-title">{{image.name}}</h5>
-                        <div class="brand-subtitle">{{image.specialisation}}</div>
-                    </li>
+                        <img src="{{image.profile}}" alt="" class="brand-img">
+                        <li class="brand-txt">
+                            <h5 class="brand-title">{{image.name}}</h5>
+                            <div class="brand-subtitle">{{image.specialisation}}</div>
+                        </li>
                     {% endfor %}
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a href="#portfolio" class="nav-link">Portfolio</a>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                        <a href="#blog" class="nav-link">Blog</a>-->
-<!--                    </li>-->
                     <li class="nav-item last-item">
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
@@ -82,43 +104,72 @@
                 <h3 class="font-weight-light">Who am I ?</h3>
                 <span class="line mb-5"></span>
                 {% for am in am %}
-                <h5 class="mb-3">{{am.Title}}</h5>
-                <p class="mt-20">{{am.description}}</p>
+                    <h5 class="mb-3">{{am.Title}}</h5>
+                    <p class="mt-20">{{am.description}}</p>
                 {% endfor %}
-<!--                <button class="btn btn-outline-danger"><i class="icon-down-circled2 "></i>Download My CV</button>-->
             </div>
             <div class="col-lg-4 about-card">
                 <h3 class="font-weight-light">Personal Info</h3>
                 <span class="line mb-5"></span>
                 <ul class="mt40 info list-unstyled">
                     {% for info in p_info %}
-                    <li><span>Birthdate</span> : {{info.birthdate}}</li>
-                    <li><span>Email</span> : {{info.email}}</li>
-                    <li><span>Phone</span> : {{info.phone}}</li>
-                    <li><span>Skype</span> : {{info.skype}}</li>
-                    <li><span>Upwork</span> :  {{info.Upwork}}</li>
+                        <li><span>Birthdate</span> : {{info.birthdate}}</li>
+                        <li><span>Email</span> : {{info.email}}</li>
+                        <li><span>Phone</span> : {{info.phone}}</li>
+                        <li><span>Skype</span> : {{info.skype}}</li>
+                        <li><span>Upwork</span> :  {{info.Upwork}}</li>
                     {% endfor %}
                 </ul>
                 <ul class="social-icons pt-3">
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+                    {% for fb in facebook %}
+                        {% if fb.link %}
+                            <li class="social-item"><a class="social-link text-danger" href="{{ fb.link }}" target="_blank"><i class="ti-{{ fb.icon }}" aria-hidden="true"></i></a></li>
+                        {% else %}
+                            <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% for tw in twitter %}
+                        {% if tw.link %}
+                            <li class="social-item"><a class="social-link text-danger" href="{{ tw.link }}" target="_blank"><i class="ti-{{ tw.icon }}" aria-hidden="true"></i></a></li>
+                        {% else %}
+                            <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% for li in linkedin %}
+                        {% if li.link %}
+                            <li class="social-item"><a class="social-link text-danger" href="{{ li.link }}" target="_blank"><i class="ti-{{ li.icon }}" aria-hidden="true"></i></a></li>
+                        {% else %}
+                            <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-linkedin" aria-hidden="true"></i></a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% for ig in instagram %}
+                        {% if ig.link %}
+                            <li class="social-item"><a class="social-link text-danger" href="{{ ig.link }}" target="_blank"><i class="ti-{{ ig.icon }}" aria-hidden="true"></i></a></li>
+                        {% else %}
+                            <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% for git in github %}
+                        {% if git.link %}
+                            <li class="social-item"><a class="social-link text-danger" href="{{ git.link }}" target="_blank"><i class="ti-{{ git.icon }}" aria-hidden="true"></i></a></li>
+                        {% else %}
+                            <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>  
             </div>
             <div class="col-lg-4 about-card">
                 <h3 class="font-weight-light">My Expertise</h3>
                 <span class="line mb-5"></span>
                 {% for expert in expertise %}
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-widget icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>{{expert.name}}</h6>
-                        <p class="subtitle"> {{expert.description}}</p>
-                        <hr>
+                    <div class="row">
+                    <div class="col-1 text-danger pt-1"><i class="ti-{{ expert.icon }} icon-lg"></i></div>
+                        <div class="col-10 ml-auto mr-3">
+                            <h6>{{expert.name}}</h6>
+                            <p class="subtitle"> {{expert.description}}</p>
+                            <hr>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         </div>
@@ -139,16 +190,16 @@
                         </div>
                         <div class="card-body">
                             {% for ex in r_expertise %}
-                            <h6 class="title text-danger">{{ex.time}}</h6>
-                            <P>{{ex.name}}</P>
-                            <P class="subtitle">{{ex.description}}</P>
-                            <hr>
+                                <h6 class="title text-danger">{{ex.time}}</h6>
+                                <P>{{ex.name}}</P>
+                                <P class="subtitle">{{ex.description}}</P>
+                                <hr>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="card">
+                    <div class="card" style="height: 590px">
                        <div class="card-header">
                             <div class="mt-2">
                                 <h4>Education</h4>
@@ -157,10 +208,10 @@
                         </div>
                         <div class="card-body">
                             {% for edu in r_education %}
-                            <h6 class="title text-danger">{{edu.time}}</h6>
-                            <P>{{edu.school_name}}</P>
-                            <P class="subtitle">{{edu.description}}</P>
-                            <hr>
+                                <h6 class="title text-danger">{{edu.time}}</h6>
+                                <P>{{edu.school_name}}</P>
+                                <P class="subtitle">{{edu.description}}</P>
+                                <hr>
                            {% endfor %}
                         </div>
                     </div>
@@ -175,10 +226,10 @@
                         </div>
                         <div class="card-body pb-2">
                             {% for skill in r_skills %}
-                           <h6>{{skill.programming_language}}</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 97%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                                <h6>{{skill.programming_language}}</h6>
+                                <div class="progress mb-3">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ skill.percent }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -191,10 +242,10 @@
                         </div>
                         <div class="card-body pb-2">
                             {% for lang in r_languages %}
-                           <h6>{{lang.language}}</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                                <h6>{{lang.language}}</h6>
+                                <div class="progress mb-3">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ lang.percent }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -213,8 +264,8 @@
                         </div>
                         <div class="col-7 text-left py-3">
                             {% for hrs in worked_hours %}
-                            <h1 class="text-danger font-weight-bold font40">{{hrs.hours}}</h1>
-                            <p class="text-light mb-1">Hours Worked</p>
+                                <h1 class="text-danger font-weight-bold font40">{{hrs.hours}}</h1>
+                                <p class="text-light mb-1">Hours Worked</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -226,8 +277,8 @@
                         </div>
                         <div class="col-7 text-left py-3">
                             {% for pro in pro_finished %}
-                            <h1 class="text-danger font-weight-bold font40">{{pro.projects}}</h1>
-                            <p class="text-light mb-1">Project Finished</p>
+                                <h1 class="text-danger font-weight-bold font40">{{pro.projects}}</h1>
+                                <p class="text-light mb-1">Projects Finished</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -239,8 +290,8 @@
                         </div>
                         <div class="col-7 text-left py-3">
                             {% for happy in happy_clients %}
-                            <h1 class="text-danger font-weight-bold font40">{{happy.happy}}</h1>
-                            <p class="text-light mb-1">Happy Clients</p>
+                                <h1 class="text-danger font-weight-bold font40">{{happy.happy}}</h1>
+                                <p class="text-light mb-1">Happy Clients</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -252,8 +303,8 @@
                         </div>
                         <div class="col-7 text-left py-3">
                             {% for coffee in coffee %}
-                            <h1 class="text-danger font-weight-bold font40">{{coffee.coffee}}</h1>
-                            <p class="text-light mb-1">Coffee Drinked</p>
+                                <h1 class="text-danger font-weight-bold font40">{{coffee.coffee}}</h1>
+                                <p class="text-light mb-1">Coffee Drank</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -267,69 +318,42 @@
             <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Services</h2>
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-vector text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Ullam</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
+                    <div class="card mb-5" style="height: 400px">
+                        {% for web in webservice %}
+                            <div class="card-header has-icon">
+                                <i class="ti-{{ web.icon }} text-danger" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-body px-4 py-3">
+                            <h5 class="mb-3 card-title text-dark">{{ web.title }}</h5>
+                            <P class="subtitle">{{ web.description }}</P>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Asperiores</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
+                    <div class="card mb-5" style="height: 400px">
+                        {% for app in appservice %}
+                            <div class="card-header has-icon">
+                                <i class="ti-{{ app.icon }} text-danger" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-body px-4 py-3">
+                            <h5 class="mb-3 card-title text-dark">{{ app.title }}</h5>
+                            <P class="subtitle">{{ app.description }}</P>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-package text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Tempora</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-map-alt text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Provident</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-bar-chart text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Consectetur</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-support text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Veritatis</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
+                    <div class="card mb-5" style="height: 400px">
+                        {% for aiandmachine in aiandmachine %}
+                            <div class="card-header has-icon">
+                                <i class="ti-{{ aiandmachine.icon }} text-danger" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-body px-4 py-3">
+                            <h5 class="mb-3 card-title text-dark">{{ aiandmachine.title }}</h5>
+                            <P class="subtitle">{{ aiandmachine.description }}</P>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -337,116 +361,42 @@
     </section>
     <section class="section bg-dark py-5">
         <div class="container text-center">
-            <h2 class="text-light mb-5 font-weight-normal">I Am Available For FreeLance</h2>
-            <button class="btn bg-primary w-lg" >Hire me</button>
+            {% for hire in hire %}
+                <h2 class="text-light mb-5 font-weight-normal">{{ hire.heading }}</h2>
+                {% if hire.link %}
+                    <a href="{{ hire.link }}" target="_blank"><button class="btn bg-primary w-lg" >{{ hire.hire }}</button></a>
+                {% else %}
+                    <span style="color: red; font-weight: bold; cursor: pointer">{{ hire.miss_link }}</span>
+                {% endif %}
+            {% endfor %}
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+        <!-- Portfolio Section -->
     <section class="section bg-custom-gray" id="portfolio">
         <div class="container">
             <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
-            <div class="portfolio">
-                <div class="filters">
-                    <a href="#" data-filter=".new" class="active">
-                        All
-                    </a>
-                    <a href="#" data-filter=".advertising">
-                        Websites
-                    </a>
-                    <a href="#" data-filter=".branding">
-                        Apps
-                    </a>
-                    <a href="#" data-filter=".web">
-                        AI
+        </div>
+{#        <div class="container">#}
+{#            <h1 class="mb-5"><span>Websites</span></h1>#}
+{#        </div>#}
+        <div class="container-fluid">
+            <div class="row gutter-3">
+                {% for web in websites %}
+                <div class="col-md-4">
+                <div class="card mb-5 kien" style="height: 250px;">
+                    <a href="{% url 'portfolio_detail' web.id %}" target="_blank">
+                        <img src="{{ web.image }}" height="200" width="400" class="card-img-top" alt="">
+                        <span>{{ web.name_of_site }}</span>
                     </a>
                 </div>
-                <div class="portfolio-container">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                            {% for all in all_work %}
-                            <img src="{{all.image}}" class="img-fluid" alt="" style="height:5000px;">
-                            <div class="content-holder">
-                                <a class="img-popup" href="{{all.image}}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">{{all.name_of_site}}</h6>
-                                    <a href="" style="color: #000">{{all.link}}</a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>             
-                    </div>
-                    <div class="col-md-6 col-lg-4 web">
-                        <div class="portfolio-item">
-                            <img src="/static/assets/imgs/web-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="/static/assets/imgs/web-4.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 advertising"> 
-                        <div class="portfolio-item">
-                            <img src="/static/assets/imgs/advertising-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="/static/assets/imgs/advertising-1.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERSITING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                       
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="/static/assets/imgs/branding-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href=/static/"assets/imgs/branding-2.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div> 
-
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="/static/assets/imgs/branding-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="/static/assets/imgs/branding-4.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                      
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="/static/assets/imgs/branding-5.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="/static/assets/imgs/branding-5.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                   
-                    </div>
-                </div> 
-            </div>  
-        </div>            
     </section>
     <!-- End of portfolio section -->
-
-
     <div class="section contact" id="contact">
         <div id="map" class="map"></div>
         <div class="container">
@@ -455,9 +405,9 @@
                     <div class="contact-form-card">
                         <h4 class="contact-title">Send a message</h4>
                         {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-{{message.tags}}">{{message}}</div>
-                        {% endfor %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}">{{message}}</div>
+                            {% endfor %}
                         {% endif %}
                         <form action="" method="POST">
                             {% csrf_token %}
@@ -474,42 +424,71 @@
                     <div class="contact-info-card">
                         <h4 class="contact-title">Get in touch</h4>
                         {% for get in intouch %}
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-mobile icon-md"></i>
+                            <div class="row mb-2">
+                                <div class="col-1 pt-1 mr-1">
+                                    <i class="ti-mobile icon-md"></i>
+                                </div>
+                                <div class="col-10 ">
+                                    <h6 class="d-inline">Phone : <br> <span class="text-muted">{{get.phone_number}}</span></h6>
+                                </div>
                             </div>
-                            <div class="col-10 ">
-                                <h6 class="d-inline">Phone : <br> <span class="text-muted">{{get.phone_number}}</span></h6>
+                            <div class="row mb-2">
+                                <div class="col-1 pt-1 mr-1">
+                                    <i class="ti-map-alt icon-md"></i>
+                                </div>
+                                <div class="col-10">
+                                    <h6 class="d-inline">Address :<br> <span class="text-muted">{{get.address}}</span></h6>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-map-alt icon-md"></i>
-                            </div>
-                            <div class="col-10">
-                                <h6 class="d-inline">Address :<br> <span class="text-muted">{{get.address}}</span></h6>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-envelope icon-md"></i>
-                            </div>
+                            <div class="row mb-2">
+                                <div class="col-1 pt-1 mr-1">
+                                    <i class="ti-envelope icon-md"></i>
+                                </div>
                             <div class="col-10">
                                 <h6 class="d-inline">Email :<br> <span class="text-muted">{{get.email}}</span></h6>
                             </div>
-                            {% endfor %}
+                        {% endfor %}
                         </div>
                         <ul class="social-icons pt-4">
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="https://github.com/Eddy1-kivs?"><i class="ti-github" aria-hidden="true"></i></a></li>
+                            {% for fb in facebook %}
+                                {% if fb.link %}
+                                    <li class="social-item"><a class="social-link text-dark" href="{{ fb.link }}" target="_blank"><i class="ti-{{ fb.icon }}" aria-hidden="true"></i></a></li>
+                                {% else %}
+                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for tw in twitter %}
+                                {% if tw.link %}
+                                    <li class="social-item"><a class="social-link text-dark" href="{{ tw.link }}" target="_blank"><i class="ti-{{ tw.icon }}" aria-hidden="true"></i></a></li>
+                                {% else %}
+                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for li in linkedin %}
+                                {% if li.link %}
+                                    <li class="social-item"><a class="social-link text-dark" href="{{ li.link }}" target="_blank"><i class="ti-{{ li.icon }}" aria-hidden="true"></i></a></li>
+                                {% else %}
+                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-linkedin" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for ig in instagram %}
+                                {% if ig.link %}
+                                    <li class="social-item"><a class="social-link text-dark" href="{{ ig.link }}" target="_blank"><i class="ti-{{ ig.icon }}" aria-hidden="true"></i></a></li>
+                                {% else %}
+                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for git in github %}
+                                {% if git.link %}
+                                    <li class="social-item"><a class="social-link text-dark" href="{{ git.link }}" target="_blank"><i class="ti-{{ git.icon }}" aria-hidden="true"></i></a></li>
+                                {% else %}
+                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+                                {% endif %}
+                            {% endfor %}
                         </ul> 
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <footer class="footer py-3">
@@ -520,21 +499,37 @@
         </div>
     </footer>
 
-	<!-- core  -->
     <script src="/static/assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="/static/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-
-    <!-- bootstrap 3 affix -->
     <script src="/static/assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- Isotope  -->
     <script src="/static/assets/vendors/isotope/isotope.pkgd.js"></script>
-    
-    <!-- Google mpas -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
-
-    <!-- JohnDoe js -->
-    <script src="/static/assets/js/johndoe.js"></script>
-
+    <script src="/static/assets/js/main.js"></script>
 </body>
+<style>
+    .kien {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: .3s;
+        border: none;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .card a {
+        color: black;
+    }
+    .card a:hover {
+        transition: 1s;
+        color: red;
+    }
+    .kien:hover {
+        transition: 1s;
+        transform: scale(105%);
+    }
+</style>
 </html>

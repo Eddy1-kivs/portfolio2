@@ -8,13 +8,9 @@ from django.contrib import messages
 # Create your views here.
 
 
-def components(request):
-    return render(request, 'components.html')
-
-
 def index(request):
     welcome = Welcome.objects.all()
-    coffee = CoffeeDrinked.objects.all()
+    coffee = CoffeeDrank.objects.all()
     intouch = GetInTouch.objects.all()
     happy_clients = HappyClients.objects.all()
     worked_hours = HoursWorked.objects.all()
@@ -31,7 +27,15 @@ def index(request):
     ai = MyPortfolioAiAndMachineLearning.objects.all()
     app = MyPortfolioApps.objects.all()
     websites = MyPortfolioWebsites.objects.all()
-    all_work = MyPortfolioALL.objects.all()
+    webservice = WebsiteService.objects.all()
+    appservice = AppService.objects.all()
+    aiandmachine = AIAndMachineService.objects.all()
+    hire = HireMe.objects.all()
+    facebook = Facebook.objects.all()
+    twitter = Twitter.objects.all()
+    linkedin = Linkedin.objects.all()
+    instagram = Instagram.objects.all()
+    github = Github.objects.all()
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -54,12 +58,10 @@ def index(request):
             send_mail(contact.subject, message, 'settings.EMAIL_HOST_USER', recipients, fail_silently=False)
     else:
         form = ContactForm
-        # return redirect('index')
     context = {
         'ai': ai,
         'app': app,
         'websites': websites,
-        'all_work': all_work,
         'form': form,
         'welcome': welcome,
         'coffee': coffee,
@@ -76,6 +78,22 @@ def index(request):
         'pro_finished': pro_finished,
         'send_message': send_message,
         'am': am,
+        'webservice': webservice,
+        'appservice': appservice,
+        'aiandmachine': aiandmachine,
+        'hire': hire,
+        'facebook': facebook,
+        'twitter': twitter,
+        'github': github,
+        'linkedin': linkedin,
+        'instagram': instagram,
     }
     return render(request, 'index.html', context)
 
+
+def portfolio_detail(request, id):
+    website = MyPortfolioWebsites.objects.filter(id=id).first()
+    context = {
+        'website': website,
+    }
+    return render(request, 'portfolio_detail.html', context)
