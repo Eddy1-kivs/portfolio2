@@ -12,8 +12,11 @@
 	<link rel="stylesheet" href="/static/assets/css/style.css">
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <header class="header">
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" style="background-color: rgba(4,17,46,0.98)">
+{% for bg in background %}
+    <header class="header" style="background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url({{ bg.image }});
+                background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url({{ bg.image }});">
+{% endfor %}
         <div class="container">
             <ul class="social-icons pt-3">
                 {% for fb in facebook %}
@@ -61,38 +64,41 @@
             </div>
         </div>
     </header>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light " data-spy="affix" data-offset-top="510" style="background-color: rgba(4,17,46,0.98)">
         <div class="container">
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler ml-auto" type="button" style="color: #FFFFFF" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-light" style="color: #FFFFFF"></span>
             </button>
             <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link">Home</a>
+                        <a href="#home" class="nav-link" style="color: white">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
+                        <a href="#about" class="nav-link" style="color: #FFFFFF;">About</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#resume" class="nav-link">Resume</a>
+                        <a href="#resume" class="nav-link" style="color: #FFFFFF">Resume</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav brand">
                     {% for image in welcome%}
                         <img src="{{image.profile}}" alt="" class="brand-img">
                         <li class="brand-txt">
-                            <h5 class="brand-title">{{image.name}}</h5>
-                            <div class="brand-subtitle">{{image.specialisation}}</div>
+                            <h5 class="brand-title" style="color: navajowhite">{{image.name}}</h5>
+                            <div class="brand-subtitle" style="color: whitesmoke">{{image.specialisation}}</div>
                         </li>
                     {% endfor %}
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#portfolio" class="nav-link">Portfolio</a>
+                        <a href="#portfolio" class="nav-link" style="color: #FFFFFF">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link" style="color: #FFFFFF">Blog</a>
                     </li>
                     <li class="nav-item last-item">
-                        <a href="#contact" class="nav-link">Contact</a>
+                        <a href="#contact" class="nav-link" style="color: #FFFFFF">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -101,23 +107,23 @@
     <div class="container-fluid">
         <div id="about" class="row about-section">
             <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Who am I ?</h3>
+                <h3 class="font-weight-light" style="color: #FFFFFF">Who am I ?</h3>
                 <span class="line mb-5"></span>
                 {% for am in am %}
-                    <h5 class="mb-3">{{am.Title}}</h5>
-                    <p class="mt-20">{{am.description}}</p>
+                    <h5 class="mb-3" style="color: #FFFFFF">{{am.Title}}</h5>
+                    <p class="mt-20" style="color: papayawhip">{{am.description}}</p>
                 {% endfor %}
             </div>
             <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Personal Info</h3>
+                <h3 class="font-weight-light" style="color: #FFFFFF">Personal Info</h3>
                 <span class="line mb-5"></span>
                 <ul class="mt40 info list-unstyled">
                     {% for info in p_info %}
-                        <li><span>Birthdate</span> : {{info.birthdate}}</li>
-                        <li><span>Email</span> : {{info.email}}</li>
-                        <li><span>Phone</span> : {{info.phone}}</li>
-                        <li><span>Skype</span> : {{info.skype}}</li>
-                        <li><span>Upwork</span> :  {{info.Upwork}}</li>
+                        <li style="color: papayawhip"><span style="color: #FFFFFF">Birthdate</span> : {{info.birthdate}}</li>
+                        <li style="color: papayawhip"><span style="color: #FFFFFF">Email</span> : {{info.email}}</li>
+                        <li style="color: papayawhip"><span style="color: #FFFFFF">Phone</span> : {{info.phone}}</li>
+                        <li style="color: papayawhip"><span style="color: #FFFFFF">Skype</span> : {{info.skype}}</li>
+                        <li style="color: papayawhip"><span style="color: #FFFFFF">Upwork</span> :  {{info.Upwork}}</li>
                     {% endfor %}
                 </ul>
                 <ul class="social-icons pt-3">
@@ -159,14 +165,14 @@
                 </ul>  
             </div>
             <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">My Expertise</h3>
+                <h3 class="font-weight-light" style="color: #FFFFFF">My Expertise</h3>
                 <span class="line mb-5"></span>
                 {% for expert in expertise %}
                     <div class="row">
                     <div class="col-1 text-danger pt-1"><i class="ti-{{ expert.icon }} icon-lg"></i></div>
                         <div class="col-10 ml-auto mr-3">
-                            <h6>{{expert.name}}</h6>
-                            <p class="subtitle"> {{expert.description}}</p>
+                            <h6 style="color: #FFFFFF">{{expert.name}}</h6>
+                            <p class="subtitle" style="color: papayawhip"> {{expert.description}}</p>
                             <hr>
                         </div>
                     </div>
@@ -178,13 +184,13 @@
     <!--Resume Section-->
     <section class="section" id="resume">
         <div class="container">
-            <h2 class="mb-5"><span class="text-danger">My</span> Resume</h2>
+            <h2 class="mb-5" style="color: white"><span class="text-danger">My</span> Resume</h2>
             <div class="row">
                 <div class="col-md-6 col-lg-4">
                     <div class="card">
                        <div class="card-header">
                             <div class="mt-2">
-                                <h4>Expertise</h4>
+                                <h4 style="color: #FFFFFF">Expertise</h4>
                                 <span class="line"></span>  
                             </div>
                         </div>
@@ -202,7 +208,7 @@
                     <div class="card" style="height: 590px">
                        <div class="card-header">
                             <div class="mt-2">
-                                <h4>Education</h4>
+                                <h4 style="color: #FFFFFF">Education</h4>
                                 <span class="line"></span>  
                             </div>
                         </div>
@@ -220,13 +226,13 @@
                     <div class="card">
                        <div class="card-header">
                             <div class="pull-left">
-                                <h4 class="mt-2">Skills</h4>
+                                <h4 class="mt-2" style="color: #FFFFFF">Skills</h4>
                                 <span class="line"></span>  
                             </div>
                         </div>
                         <div class="card-body pb-2">
                             {% for skill in r_skills %}
-                                <h6>{{skill.programming_language}}</h6>
+                                <h6 style="color: papayawhip">{{skill.programming_language}}</h6>
                                 <div class="progress mb-3">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: {{ skill.percent }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -242,7 +248,7 @@
                         </div>
                         <div class="card-body pb-2">
                             {% for lang in r_languages %}
-                                <h6>{{lang.language}}</h6>
+                                <h6 style="color: papayawhip">{{lang.language}}</h6>
                                 <div class="progress mb-3">
                                 <div class="progress-bar bg-danger" role="progressbar" style="width: {{ lang.percent }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -254,7 +260,7 @@
         </div>
     </section>
 
-    <section class="section bg-dark text-center">
+    <section class="section text-center" style="background-color: #0f0039">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-6 col-lg-3">
@@ -299,7 +305,7 @@
                 <div class="col-md-6 col-lg-3">
                     <div class="row">
                         <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-heart-broken icon-xl"></i></div>
+                            <div class="m-auto"><i class="ti-heart icon-xl"></i></div>
                         </div>
                         <div class="col-7 text-left py-3">
                             {% for coffee in coffee %}
@@ -315,42 +321,42 @@
 
     <section class="section" id="service">
         <div class="container">
-            <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Services</h2>
+            <h2 class="mb-5 pb-4" style="color: #FFFFFF"><span class="text-danger">My</span> Services</h2>
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5" style="height: 400px">
+                    <div class="card mb-5 kivs" style="height: 400px">
                         {% for web in webservice %}
                             <div class="card-header has-icon">
                                 <i class="ti-{{ web.icon }} text-danger" aria-hidden="true"></i>
                             </div>
                             <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">{{ web.title }}</h5>
+                            <h5 class="mb-3 card-title" style="color: #FFFFFF">{{ web.title }}</h5>
                             <P class="subtitle">{{ web.description }}</P>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5" style="height: 400px">
+                    <div class="card mb-5 kivs" style="height: 400px">
                         {% for app in appservice %}
                             <div class="card-header has-icon">
                                 <i class="ti-{{ app.icon }} text-danger" aria-hidden="true"></i>
                             </div>
                             <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">{{ app.title }}</h5>
+                            <h5 class="mb-3 card-title" style="color: #FFFFFF">{{ app.title }}</h5>
                             <P class="subtitle">{{ app.description }}</P>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5" style="height: 400px">
+                    <div class="card mb-5 kivs" style="height: 400px">
                         {% for aiandmachine in aiandmachine %}
                             <div class="card-header has-icon">
                                 <i class="ti-{{ aiandmachine.icon }} text-danger" aria-hidden="true"></i>
                             </div>
                             <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">{{ aiandmachine.title }}</h5>
+                            <h5 class="mb-3 card-title" style="color: #FFFFFF">{{ aiandmachine.title }}</h5>
                             <P class="subtitle">{{ aiandmachine.description }}</P>
                             </div>
                         {% endfor %}
@@ -359,7 +365,7 @@
             </div>
         </div>
     </section>
-    <section class="section bg-dark py-5">
+    <section class="section py-5" style="background-color: #0f0039">
         <div class="container text-center">
             {% for hire in hire %}
                 <h2 class="text-light mb-5 font-weight-normal">{{ hire.heading }}</h2>
@@ -373,9 +379,9 @@
     </section>
 
         <!-- Portfolio Section -->
-    <section class="section bg-custom-gray" id="portfolio">
+    <section class="section" id="portfolio" style="background-color: rgba(4,17,46,0.98)">
         <div class="container">
-            <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
+            <h1 class="mb-5" style="color: #FFFFFF"><span class="text-danger">My</span> Portfolio</h1>
         </div>
 {#        <div class="container">#}
 {#            <h1 class="mb-5"><span>Websites</span></h1>#}
@@ -384,10 +390,10 @@
             <div class="row gutter-3">
                 {% for web in websites %}
                 <div class="col-md-4">
-                <div class="card mb-5 kien" style="height: 250px;">
+                <div class="card mb-5 kien" style="height: 250px; padding: 10px">
                     <a href="{% url 'portfolio_detail' web.id %}" target="_blank">
-                        <img src="{{ web.image }}" height="200" width="400" class="card-img-top" alt="">
-                        <span>{{ web.name_of_site }}</span>
+                        <img src="{{ web.image }}" height="200" width="400" style="border-radius: 0px" class="card-img-top" alt="">
+                        <span style="color: #FFFFFF;padding: 20px 20px 20px 20px;" class="span">{{ web.name_of_site }}</span>
                     </a>
                 </div>
                 </div>
@@ -398,12 +404,12 @@
     </section>
     <!-- End of portfolio section -->
     <div class="section contact" id="contact">
-        <div id="map" class="map"></div>
+{#        <div id="map" class="map"></div>#}
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="contact-form-card">
-                        <h4 class="contact-title">Send a message</h4>
+                    <div class="contact-form-card" style="background-color: rgba(7,25,76,0.98);">
+                        <h4 class="contact-title" style="color: #FFFFFF">Send a message</h4>
                         {% if messages %}
                             {% for message in messages %}
                                 <div class="alert alert-{{message.tags}}">{{message}}</div>
@@ -411,7 +417,7 @@
                         {% endif %}
                         <form action="" method="POST">
                             {% csrf_token %}
-                            <div class="form-group">
+                            <div class="form-group" style="background-color: rgba(7,25,76,0.98); color: #FFFFFF">
                                 {{form|crispy}}
                             </div>
                             <div class="form-group ">
@@ -421,68 +427,68 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="contact-info-card">
-                        <h4 class="contact-title">Get in touch</h4>
+                    <div class="contact-info-card" style="background-color: rgba(7,25,76,0.98)";>
+                        <h4 class="contact-title" style="color: #FFFFFF;">Get in touch</h4>
                         {% for get in intouch %}
                             <div class="row mb-2">
                                 <div class="col-1 pt-1 mr-1">
-                                    <i class="ti-mobile icon-md"></i>
+                                    <i class="ti-mobile icon-md" style="color: red"></i>
                                 </div>
                                 <div class="col-10 ">
-                                    <h6 class="d-inline">Phone : <br> <span class="text-muted">{{get.phone_number}}</span></h6>
+                                    <h6 class="d-inline" style="color: white">Phone : <br> <span class="text-muted" style="color: white;">{{get.phone_number}}</span></h6>
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-1 pt-1 mr-1">
-                                    <i class="ti-map-alt icon-md"></i>
+                                    <i class="ti-map-alt icon-md" style="color: red"></i>
                                 </div>
                                 <div class="col-10">
-                                    <h6 class="d-inline">Address :<br> <span class="text-muted">{{get.address}}</span></h6>
+                                    <h6 class="d-inline" style="color: white">Address :<br> <span class="text-muted">{{get.address}}</span></h6>
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-1 pt-1 mr-1">
-                                    <i class="ti-envelope icon-md"></i>
+                                    <i class="ti-envelope icon-md" style="color: red"></i>
                                 </div>
                             <div class="col-10">
-                                <h6 class="d-inline">Email :<br> <span class="text-muted">{{get.email}}</span></h6>
+                                <h6 class="d-inline" style="color: white">Email :<br> <span class="text-muted">{{get.email}}</span></h6>
                             </div>
                         {% endfor %}
                         </div>
                         <ul class="social-icons pt-4">
                             {% for fb in facebook %}
                                 {% if fb.link %}
-                                    <li class="social-item"><a class="social-link text-dark" href="{{ fb.link }}" target="_blank"><i class="ti-{{ fb.icon }}" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="{{ fb.link }}" target="_blank"><i class="ti-{{ fb.icon }}" aria-hidden="true"></i></a></li>
                                 {% else %}
-                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
                                 {% endif %}
                             {% endfor %}
                             {% for tw in twitter %}
                                 {% if tw.link %}
-                                    <li class="social-item"><a class="social-link text-dark" href="{{ tw.link }}" target="_blank"><i class="ti-{{ tw.icon }}" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="{{ tw.link }}" target="_blank"><i class="ti-{{ tw.icon }}" aria-hidden="true"></i></a></li>
                                 {% else %}
-                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
                                 {% endif %}
                             {% endfor %}
                             {% for li in linkedin %}
                                 {% if li.link %}
-                                    <li class="social-item"><a class="social-link text-dark" href="{{ li.link }}" target="_blank"><i class="ti-{{ li.icon }}" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="{{ li.link }}" target="_blank"><i class="ti-{{ li.icon }}" aria-hidden="true"></i></a></li>
                                 {% else %}
-                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-linkedin" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-linkedin" aria-hidden="true"></i></a></li>
                                 {% endif %}
                             {% endfor %}
                             {% for ig in instagram %}
                                 {% if ig.link %}
-                                    <li class="social-item"><a class="social-link text-dark" href="{{ ig.link }}" target="_blank"><i class="ti-{{ ig.icon }}" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="{{ ig.link }}" target="_blank"><i class="ti-{{ ig.icon }}" aria-hidden="true"></i></a></li>
                                 {% else %}
-                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
                                 {% endif %}
                             {% endfor %}
                             {% for git in github %}
                                 {% if git.link %}
-                                    <li class="social-item"><a class="social-link text-dark" href="{{ git.link }}" target="_blank"><i class="ti-{{ git.icon }}" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="{{ git.link }}" target="_blank"><i class="ti-{{ git.icon }}" aria-hidden="true"></i></a></li>
                                 {% else %}
-                                    <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
+                                    <li class="social-item"><a class="social-link text-danger" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
                                 {% endif %}
                             {% endfor %}
                         </ul> 
@@ -491,7 +497,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer py-3">
+    <footer class="footer py-3" style="background-color: rgba(4,17,46,0.98)">
         <div class="container">
             <p class="small mb-0 text-light">
                 &copy; <script>document.write(new Date().getFullYear())</script> Created With <i class="ti-heart text-danger"></i> By <a href="" target="_blank"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">EdwinKivuva</span></a>
@@ -503,7 +509,7 @@
     <script src="/static/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
     <script src="/static/assets/vendors/bootstrap/bootstrap.affix.js"></script>
     <script src="/static/assets/vendors/isotope/isotope.pkgd.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+{#    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>#}
     <script src="/static/assets/js/main.js"></script>
 </body>
 <style>
@@ -520,16 +526,35 @@
         cursor: pointer;
         border-radius: 5px;
     }
+    .card {
+        background-color: rgba(7,25,76,0.98);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    }
+    .card h4 {
+        color: white;
+    }
+    .card p {
+        color: papayawhip;
+    }
     .card a {
         color: black;
     }
-    .card a:hover {
+    .card .span:hover {
         transition: 1s;
         color: red;
     }
     .kien:hover {
         transition: 1s;
         transform: scale(105%);
+        color: red;
+    }
+    .kien.span{
+        transition: 1s;
+        color: red;
+    }
+    .kien a:hover {
+        color: red;
+        transition: 1s;
     }
 </style>
 </html>

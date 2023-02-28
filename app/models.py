@@ -153,7 +153,7 @@ class MyPortfolioWebsites(models.Model):
     name_of_site = models.CharField(max_length=100)
     link = models.URLField(blank=True, null=True)
     miss_link = models.CharField(blank=True, max_length=100, null=True)
-    description = models.TextField(null=True)
+    description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='media/websites')
     image_1 = models.ImageField(upload_to='media/websites', null=True)
     image_2 = models.ImageField(upload_to='media/websites', null=True)
@@ -326,3 +326,13 @@ class Instagram(models.Model):
 
     class Meta:
         verbose_name_plural = "Instagram"
+
+
+class HeaderBackground(models.Model):
+    image = models.ImageField(upload_to='media/background', null=True)
+
+    # def __str__(self):
+        # return self.image
+
+    class Meta:
+        verbose_name_plural = "Header Background"

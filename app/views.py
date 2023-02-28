@@ -36,6 +36,7 @@ def index(request):
     linkedin = Linkedin.objects.all()
     instagram = Instagram.objects.all()
     github = Github.objects.all()
+    background = HeaderBackground.objects.all()
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -87,6 +88,7 @@ def index(request):
         'github': github,
         'linkedin': linkedin,
         'instagram': instagram,
+        'background': background,
     }
     return render(request, 'index.html', context)
 
