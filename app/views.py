@@ -4,6 +4,7 @@ from .models import *
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.views import View
 
 # Create your views here.
 
@@ -44,7 +45,6 @@ def index(request):
             contact = SendAMessage(
                 name=request.POST['name'],
                 email=request.POST['email'],
-                subject=request.POST['subject'],
                 message=request.POST['message']
             )
             contact.save()
@@ -52,7 +52,7 @@ def index(request):
                              'Your Message has been send successfully. I will get back to you soon Via Email.')
 
             # Define the message variable
-            message = f"From: {contact.name}, Email: {contact.email}, Subject: {contact.subject}, Message: {contact.message}"
+            message = f"From: {contact.name}, Email: {contact.email}, Message: {contact.message}"
 
             # Send the email to multiple recipients
             recipients = ['kivuvaedwin@gmail.com']
@@ -99,3 +99,17 @@ def portfolio_detail(request, id):
         'website': website,
     }
     return render(request, 'portfolio_detail.html', context)
+
+
+# class RegistrationView(View):
+#     def get(self, request):
+#         return render(request, 'index.html')
+#
+#     def post(self, request):
+#         name = request.POST['name']
+#         email = request.POST['email']
+#         message = request.POST['message']
+#
+#         context = {
+#             'fieldValues': request.POST
+#         }
