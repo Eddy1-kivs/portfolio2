@@ -5,6 +5,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.views import View
+# from validate_email import validate_email
+from django.core.mail import EmailMessage
+import json
 
 # Create your views here.
 
@@ -56,7 +59,7 @@ def index(request):
 
             # Send the email to multiple recipients
             recipients = ['kivuvaedwin@gmail.com']
-            send_mail(contact.subject, message, 'settings.EMAIL_HOST_USER', recipients, fail_silently=False)
+            send_mail(contact.name, message, 'settings.EMAIL_HOST_USER', recipients, fail_silently=False)
     else:
         form = ContactForm
     context = {
@@ -101,15 +104,41 @@ def portfolio_detail(request, id):
     return render(request, 'portfolio_detail.html', context)
 
 
-# class RegistrationView(View):
-#     def get(self, request):
-#         return render(request, 'index.html')
-#
-#     def post(self, request):
-#         name = request.POST['name']
-#         email = request.POST['email']
-#         message = request.POST['message']
-#
-#         context = {
-#             'fieldValues': request.POST
-#         }
+class EmailValidationView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        email = data['email']
+        if not validate_email(email):
+            return JsonResponse({'email_error': 'email is invalid'}, status=400)
+        return JsonResponse({'email': True})
+
+
+class RegistrationView(View):
+    def get(self, request):
+        return render(request, 'index.html')
+
+    def post(self, request):
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+
+        context = {
+            'fieldValues': request.POST
+        }
+        if name < 2:
+            messages.error(request, 'invalid name')
+            return render(request, 'index.html', context)
+
+        message = SendAMessage.objects.create(name=name, email=email, message=message)
+        message.save()
+
+        # Define the message variable
+        message = f"From: {contact.name}, Email: {contact.email}, Message: {contact.message}"
+
+        # Send the email to multiple recipients
+        recipients = ['kivuvaedwin@gmail.com']
+        send_mail(message, 'settings.EMAIL_HOST_USER', recipients, fail_silently=False)
+
+        messages.success(request,  'Hi Message has been send successfully. I will get back to you soon Via Email.')
+
+        return render(request, 'index.html')
